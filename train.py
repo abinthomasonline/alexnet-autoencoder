@@ -24,8 +24,8 @@ def train(*args, **kwargs):
     # Configs and Hyperparameters
     image_path = "data/imagenette2"
     batch_size = 64
-    learning_rate = 3e-4
-    momentum = 0.9
+    learning_rate = 1e-3
+    # momentum = 0.9
     epochs = 1000
     steps_per_epoch = 100
     val_steps = 100
@@ -59,7 +59,7 @@ def train(*args, **kwargs):
     # Model, Loss, Optimizer
     model = Autoencoder().to(device)
     loss_fn = nn.MSELoss().to(device)
-    optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=momentum)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     # Initialize training variables
     train_iter = iter(train_loader)
